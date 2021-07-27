@@ -39,4 +39,9 @@ public class ResumeManager implements ResumeService {
     public DataResult<List<Resume>> getAll() {
         return new SuccessDataResult<List<Resume>>(this.resumeDao.findAll(),"Başarıyla listelendi");
     }
+
+    @Override
+    public DataResult<Resume> getByCandidateId(int id) {
+        return new SuccessDataResult<Resume>(this.resumeDao.getById(id), "Öz geçmiş listelendi.");
+    }
 }

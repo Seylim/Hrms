@@ -38,4 +38,9 @@ public class ResumeController {
         return this.resumeService.getAll();
     }
 
+    @GetMapping("/getByCandidateId")
+    DataResult<Resume> getByCandidateId(@RequestParam int id){
+        return this.resumeService.getByCandidateId(id);
+    }
+
 }

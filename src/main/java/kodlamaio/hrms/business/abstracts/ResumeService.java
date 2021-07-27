@@ -10,4 +10,5 @@ public interface ResumeService {
     Result addResume(Resume resume);
     Result delete(int id);
     DataResult<List<Resume>> getAll();
+    DataResult<Resume> getByCandidateId(int id);
 }
