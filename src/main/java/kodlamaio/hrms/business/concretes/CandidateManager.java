@@ -10,6 +10,7 @@ import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
 import kodlamaio.hrms.dataAccess.abstracts.ResumeDao;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.Resume;
+import kodlamaio.hrms.entities.dtos.CandidateWithEducationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -65,6 +66,11 @@ public class CandidateManager implements CandidateService {
     @Override
     public DataResult<Candidate> getById(int id) {
         return new SuccessDataResult<Candidate>(this.candidateDao.findById(id).orElse(null));
+    }
+
+    @Override
+    public DataResult<List<CandidateWithEducationDto>> getCandidateByGraduationDate() {
+        return new SuccessDataResult<List<CandidateWithEducationDto>>(this.candidateDao.getCandidateByGraduationDate());
     }
 
     private Result checkIfUserExist(List<Candidate> candidates, Candidate checkCandidate){

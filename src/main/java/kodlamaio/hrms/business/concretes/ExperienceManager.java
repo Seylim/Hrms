@@ -8,6 +8,7 @@ import kodlamaio.hrms.core.utilities.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.ExperienceDao;
 import kodlamaio.hrms.entities.concretes.Experience;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,5 +38,11 @@ public class ExperienceManager implements ExperienceService {
     public Result delete(int id) {
         this.experienceDao.deleteById(id);
         return new SuccessResult("Kayıt silindi.");
+    }
+
+    @Override
+    public DataResult<List<Experience>> getByLeaveDateSorted() {
+        Sort sort = Sort.by(Sort.Direction.DESC,"leaveDate");
+        return new SuccessDataResult<List<Experience>>(this.experienceDao.findAll(sort));
     }
 }

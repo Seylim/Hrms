@@ -6,6 +6,7 @@ import kodlamaio.hrms.core.utilities.DataResult;
 import kodlamaio.hrms.core.utilities.Result;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.Resume;
+import kodlamaio.hrms.entities.dtos.CandidateWithEducationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,5 +40,10 @@ public class CandidateController {
     @GetMapping("/getbyid")
     public DataResult<Candidate> getById(@RequestParam int id){
         return this.candidateService.getById(id);
+    }
+
+    @GetMapping("/getCandidateByGraduationDate")
+    DataResult<List<CandidateWithEducationDto>> getCandidateByGraduationDate(){
+        return this.candidateService.getCandidateByGraduationDate();
     }
 }
