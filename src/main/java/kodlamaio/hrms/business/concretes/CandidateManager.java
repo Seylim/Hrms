@@ -2,11 +2,14 @@ package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.business.abstracts.CandidateValidService;
+import kodlamaio.hrms.business.abstracts.ResumeService;
 import kodlamaio.hrms.core.services.EmailService;
 import kodlamaio.hrms.core.services.MernisService;
 import kodlamaio.hrms.core.utilities.*;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
+import kodlamaio.hrms.dataAccess.abstracts.ResumeDao;
 import kodlamaio.hrms.entities.concretes.Candidate;
+import kodlamaio.hrms.entities.concretes.Resume;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +21,16 @@ public class CandidateManager implements CandidateService {
     private final CandidateValidService candidateValidService;
     private final MernisService mernisService;
     private final EmailService emailService;
+    private ResumeService resumeService;
 
     @Autowired
     public CandidateManager(CandidateDao candidateDao, CandidateValidService candidateValidService,
-                            MernisService mernisService, EmailService emailService){
+                            MernisService mernisService, EmailService emailService, ResumeService resumeService){
         this.candidateDao=candidateDao;
         this.candidateValidService = candidateValidService;
         this.mernisService = mernisService;
         this.emailService = emailService;
+        this.resumeService = resumeService;
     }
     @Override
     public Result register(Candidate candidate) throws Exception {
@@ -43,6 +48,13 @@ public class CandidateManager implements CandidateService {
             }
         }
         return new ErrorResult("Lütfen bilgilerinizi doğru giriniz.");
+    }
+
+    @Override
+    public Result delete(int id) {
+        this.resumeService.delete(id);
+        this.candidateDao.deleteById(id);
+        return new SuccessResult("Başarıyla silindi");
     }
 
     @Override

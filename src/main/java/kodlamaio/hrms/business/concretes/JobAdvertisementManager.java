@@ -14,6 +14,18 @@ import java.util.List;
 public class JobAdvertisementManager implements JobAdvertisementService {
     private JobAdvertisementDao jobAdvertisementDao;
 
+    @Override
+    public Result add(JobAdvertisement jobAdvertisement) {
+        this.jobAdvertisementDao.save(jobAdvertisement);
+        return new SuccessResult();
+    }
+
+    @Override
+    public Result deleteJobAdvertisement(JobAdvertisement jobAdvertisement) {
+        this.jobAdvertisementDao.delete(jobAdvertisement);
+        return new SuccessResult();
+    }
+
     @Autowired
     public JobAdvertisementManager(JobAdvertisementDao jobAdvertisementDao){
         this.jobAdvertisementDao=jobAdvertisementDao;

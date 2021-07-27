@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface EmployerService {
     Result register(Employer employer) throws Exception;
-    Result add(JobAdvertisement jobAdvertisement);
-    Result deleteJobAdvertisement(JobAdvertisement jobAdvertisement);
     DataResult<List<Employer>> getAll();
     DataResult<Employer> getById(int id);
 }

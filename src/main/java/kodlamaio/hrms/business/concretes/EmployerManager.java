@@ -18,7 +18,6 @@ public class EmployerManager implements EmployerService {
     private final EmployerDao employerDao;
     private final EmployerValidService employerValidService;
     private final EmailService emailService;
-    private final JobAdvertisementDao jobAdvertisementDao;
 
     @Autowired
     public EmployerManager(EmployerDao employerDao, EmployerValidService employerValidService, EmailService emailService,
@@ -26,7 +25,6 @@ public class EmployerManager implements EmployerService {
         this.employerDao = employerDao;
         this.employerValidService = employerValidService;
         this.emailService = emailService;
-        this.jobAdvertisementDao = jobAdvertisementDao;
     }
 
     @Override
@@ -43,18 +41,6 @@ public class EmployerManager implements EmployerService {
             return new ErrorResult("Lütfen epostanıza gelen aktivasyon kodunu aktive ediniz.");
         }
         return checkIfExistEmployer(employers, employer);
-    }
-
-    @Override
-    public Result add(JobAdvertisement jobAdvertisement) {
-        this.jobAdvertisementDao.save(jobAdvertisement);
-        return new SuccessResult();
-    }
-
-    @Override
-    public Result deleteJobAdvertisement(JobAdvertisement jobAdvertisement) {
-        this.jobAdvertisementDao.delete(jobAdvertisement);
-        return new SuccessResult();
     }
 
     @Override

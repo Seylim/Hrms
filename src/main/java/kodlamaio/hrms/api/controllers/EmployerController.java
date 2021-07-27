@@ -25,16 +25,6 @@ public class EmployerController {
         return this.employerService.register(employer);
     }
 
-    @PostMapping("/job_advertisement_add")
-    public Result add(@RequestBody JobAdvertisement jobAdvertisement){
-        return this.employerService.add(jobAdvertisement);
-    }
-
-    @DeleteMapping("/delete_job_advertisement")
-    public Result deleteJobAdvertisement(@RequestBody JobAdvertisement jobAdvertisement){
-        return this.employerService.deleteJobAdvertisement(jobAdvertisement);
-    }
-
     @GetMapping("/getall")
     public DataResult<List<Employer>> getAll(){
         return this.employerService.getAll();

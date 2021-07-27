@@ -8,6 +8,8 @@ import org.springframework.data.domain.Sort;
 import java.util.List;
 
 public interface JobAdvertisementService {
+    Result add(JobAdvertisement jobAdvertisement);
+    Result deleteJobAdvertisement(JobAdvertisement jobAdvertisement);
     DataResult<List<JobAdvertisement>> getAll();
     DataResult<List<JobAdvertisement>> getByStatus(boolean status);
     DataResult<List<JobAdvertisement>> getByStatusSorted(Boolean status);

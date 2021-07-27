@@ -21,6 +21,16 @@ public class JobAdvertisementController {
         this.jobAdvertisementService = jobAdvertisementService;
     }
 
+    @PostMapping("/job_advertisement_add")
+    public Result add(@RequestBody JobAdvertisement jobAdvertisement){
+        return this.jobAdvertisementService.add(jobAdvertisement);
+    }
+
+    @DeleteMapping("/delete_job_advertisement")
+    public Result deleteJobAdvertisement(@RequestBody JobAdvertisement jobAdvertisement){
+        return this.jobAdvertisementService.deleteJobAdvertisement(jobAdvertisement);
+    }
+
     @GetMapping("/getall")
     public DataResult<List<JobAdvertisement>> getAll(){
         return this.jobAdvertisementService.getAll();

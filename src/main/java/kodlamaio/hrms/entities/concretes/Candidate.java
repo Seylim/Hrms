@@ -1,11 +1,14 @@
 package kodlamaio.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -14,6 +17,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Candidate extends User{
 
     @Column(name = "first_name")
@@ -28,5 +32,8 @@ public class Candidate extends User{
     @Column(name = "year_of_birth")
     private int yearOfBirth;
 
+    @JsonIgnore
+    @OneToMany(mappedBy="candidate")
+    private List<Resume> resumes;
 
 }
